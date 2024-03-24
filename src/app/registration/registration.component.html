@@ -1,0 +1,55 @@
+<mat-card>
+    <form id="registrationForm" (ngSubmit)="onRegister()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+        <div *ngIf="validationErrors.username" class="custom-error">
+          {{ validationErrors.username }}
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" [(ngModel)]="firstName" name="firstName" required>
+        <div *ngIf="validationErrors.firstName" class="custom-error">
+          {{ validationErrors.firstName }}
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
+        <div *ngIf="validationErrors.lastName" class="custom-error">
+          {{ validationErrors.lastName }}
+        </div>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" type="email" required>
+        <div *ngIf="validationErrors.email" class="custom-error">
+          {{ validationErrors.email }}
+        </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [(ngModel)]="password" name="password" type="password" required [type]="hide ? 'password' : 'text'">
+        <div *ngIf="validationErrors.password" class="custom-error">
+          {{ validationErrors.password }}
+        </div>
+        <button mat-icon-button matSuffix (click)="toggleVisibility($event)">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      </mat-form-field>
+
+  
+      <button (click)="onRegister" mat-raised-button color="primary" type="submit">Register</button>
+    </form>
+  </mat-card>
+
+  <div *ngIf="errorMessage" class="custom-error">
+    <p>{{errorMessage}}</p>
+  </div>
+  
