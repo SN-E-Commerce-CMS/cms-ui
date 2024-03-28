@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MerchantUser } from './to/merchant-user.model';
 import { RegistrationProxyService } from './service/registration-proxy.service';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-registration',
@@ -34,6 +35,8 @@ export class RegistrationComponent {
   errorMessage: string | null = null;
   validationErrors: ValidationResponse = {};
 
+  confirmationMessage: string = '';
+
   // form fields
   username!: string;
   password!: string;
@@ -55,7 +58,7 @@ export class RegistrationComponent {
 
   this.registrationService.registerMerchantUser(merchantUser).subscribe({
     next: (response) => {
-      console.log(`user: ${merchantUser.username} has been successfully registrated.`)
+      this.confirmationMessage = `You have been registrated, please check your e-mail to confirm your account. ${response.email}`
       this.validationErrors = {};
       this.errorMessage = null;
       this.clearForm();
@@ -93,5 +96,6 @@ private clearForm(): void {
   this.email = '';
   this.password = '';
 }
+
 
 }
