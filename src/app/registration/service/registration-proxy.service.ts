@@ -15,13 +15,13 @@ export class RegistrationProxyService {
 
     const headers = new HttpHeaders({'X-XSRF-TOKEN': this.getXsrfToken()});
 
-    return this.http.post(environment.keycloakAdminUrl, merchantUser, {
+    return this.http.post(environment.registrationServiceUrl, merchantUser, {
       headers: headers,
       withCredentials: true
     })
   }
 
-  getXsrfToken(): string {
+  private getXsrfToken(): string {
     const cookieName: string = 'XSRF-TOKEN';
     let cookieValue: string = '';
 
